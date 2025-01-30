@@ -1,4 +1,6 @@
 using Godoycordoba.Data.Context;
+using Godoycordoba.Logic.Interfaces;
+using Godoycordoba.Logic.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<GodoycordobaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GodoycordobaConnection")));
 
+builder.Services.AddTransient<ILogic, UpdateLoginDate>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
